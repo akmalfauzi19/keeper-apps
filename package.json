@@ -37,5 +37,8 @@
     "whitelist": [
       "BACKEND_URL"
     ]
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
