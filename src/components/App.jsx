@@ -11,6 +11,7 @@ const baseURL = env.BACKEND_URL;
 const itemsPerPage = 10;
 
 function App() {
+  const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [inputs, setInputs] = useState({
@@ -22,20 +23,21 @@ function App() {
 
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = notes.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(notes.length / itemsPerPage);
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % notes.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+
     setItemOffset(newOffset);
   };
 
   useEffect(() => {
-    fetchData();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      fetchData();
+    }, 2000);
   }, [])
 
   const fetchData = async () => {
@@ -126,7 +128,11 @@ function App() {
           );
         })}
       </div>
-      {notes.length > itemsPerPage && (
+      {loading ? (
+         <div className="loader-container">
+      	  <div className="spinner"></div>
+        </div>
+      ) : (notes.length > itemsPerPage && (
         <div className='pagination'>
           <ReactPaginate
             breakLabel="..."
@@ -138,7 +144,7 @@ function App() {
             renderOnZeroPageCount={null}
           />
         </div>
-      )}
+      ))}
 
       <Footer />
     </div >
