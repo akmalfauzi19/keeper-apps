@@ -21,9 +21,9 @@
     "typescript": "3.3.3"
   },
   "scripts": {
-    "start": "react-dotenv && react-scripts start",
-    "build": "react-dotenv && react-scripts build",
-    "serve": "react-dotenv && serve build",
+    "start": "react-dotenv && react-scripts start --openssl-legacy-provider",
+    "build": "react-dotenv && react-scripts build --openssl-legacy-provider",
+    "serve": "react-dotenv && serve build --openssl-legacy-provider",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
