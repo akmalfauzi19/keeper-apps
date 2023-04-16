@@ -1,0 +1,37 @@
+ul {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0 5rem;
+}
+
+ul li a {
+    border-radius: 20px;
+    padding: 0.1rem 1rem;
+    border: rgb(255, 149, 0) 1px solid;
+    cursor: pointer;
+}
+
+ul li.previous a,
+ul li.next a,
+ul li.break a {
+    border-color: transparent;
+}
+
+ul li.selected a {
+    background-color: #0366d6;
+    border-color: transparent;
+    color: rgb(255, 255, 255);
+    min-width: 32px;
+}
+
+ul li.disabled a {
+    color: grey;
+}
+
+ul li.disable,
+ul li.disabled a {
+    cursor: default;
+}
